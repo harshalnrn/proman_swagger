@@ -13,6 +13,9 @@ import java.util.UUID;
 @Service
 public class SignupBusinessService {
 
+
+    @Autowired
+    PasswordCryptographyProvider passwordCryptographyProvider;
     @Autowired
     UserDao userDao;
     /*@Autowired
@@ -20,14 +23,16 @@ public class SignupBusinessService {
 
     public UserEntity signup(SignupUserRequest signupUserRequest) {
 //populate entiry from model/request bean
+
+        String[] encrypedData=passwordCryptographyProvider.encrypt(signupUserRequest.getPassword()); //encryped password, salt generated via hashing
         UserEntity userEntity=new UserEntity();
         userEntity.setUuid(UUID.randomUUID().toString());
         userEntity.setFirstName(signupUserRequest.getFirstName());
         userEntity.setLastName(signupUserRequest.getLastName());
         userEntity.setEmail(signupUserRequest.getEmailAddress());
-        userEntity.setPassword(signupUserRequest.getPassword());
+        userEntity.setPassword(encrypedData[1]);
         userEntity.setMobilePhone(signupUserRequest.getMobileNumber());
-        userEntity.setSalt("1234abc");
+        userEntity.setSalt(encrypedData[0]);
         userEntity.setStatus(4);
         userEntity.setCreatedAt(ZonedDateTime.now());
         userEntity.setCreatedBy("api-backend");
