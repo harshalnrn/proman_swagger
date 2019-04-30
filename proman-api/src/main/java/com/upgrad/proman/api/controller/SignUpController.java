@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SignUpController {
 
   @Autowired // note classes of other module wont be accessable here, unless you add it as
-             // dependency in pom
+  // dependency in pom
   SignupBusinessService signupBusinessService;
 
   @RequestMapping(

@@ -12,10 +12,11 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.1.RELEASE</version>
+        <version>2.0.3.RELEASE</version>
         <relativePath></relativePath>
     </parent>
 
+<!--    be carefull on order of building modules ar per dependency-->
     <modules>
         <module>proman-db</module>
         <module>proman-model</module>

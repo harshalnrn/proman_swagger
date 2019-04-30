@@ -9,7 +9,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 @Repository
-@Transactional
+
 public class AdminUserDao {
 
     @PersistenceContext

@@ -55,6 +55,7 @@
                         <goals>
                             <goal>read-project-properties</goal>
                         </goals>
+                        <!--spring boot checks by default in application.prop unless you specify it here-->
                         <configuration>
                             <files>
                                 <file>${basedir}/src/main/resources/config/localhost.properties</file>

@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.jmx.export.annotation.ManagedNotification;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -18,7 +19,9 @@ import java.time.ZonedDateTime;
 @NamedQueries(
         {
                 @NamedQuery(name = "userByUuid", query = "select u from UserEntity u where u.uuid = :uuid"),
-                @NamedQuery(name = "userByEmail", query = "select u from UserEntity u where u.email =:email")
+                @NamedQuery(name = "userByEmail", query = "select u from UserEntity u where u.email =:email"),
+                @NamedQuery(name="userByPasword",query="select u from UserEntity u where u.email=:username and u.password=:encrypPassword")
+
         }
 )
 

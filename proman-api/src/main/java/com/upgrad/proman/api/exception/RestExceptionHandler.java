@@ -1,6 +1,7 @@
 package com.upgrad.proman.api.exception;
 
 import com.upgrad.proman.api.model.ErrorResponse;
+import com.upgrad.proman.service.exception.AuthenticationFailedException;
 import com.upgrad.proman.service.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,5 +20,14 @@ public class RestExceptionHandler {
     return new ResponseEntity<ErrorResponse>(
         new ErrorResponse().code(exc.getCode()).message(exc.getErrorMessage()),
         HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+
+  @ExceptionHandler(AuthenticationFailedException.class)
+  public ResponseEntity<ErrorResponse> authenticationFailed(AuthenticationFailedException a, WebRequest request){
+    ErrorResponse errorResponse=new ErrorResponse();
+    errorResponse.code(a.getCode());
+    errorResponse.setMessage(a.getMessage());
+    return new ResponseEntity<ErrorResponse>(errorResponse,HttpStatus.UNAUTHORIZED);
+
   }
 }

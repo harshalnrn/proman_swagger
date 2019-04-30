@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository
-@Transactional
+
 public class UserDao {
 
     @PersistenceContext    //(note why this annotation and not autowired). This ensures that this is managed by spring container and not application
